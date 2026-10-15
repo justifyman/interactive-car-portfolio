@@ -1,0 +1,108 @@
+{
+  "site": {
+    "url": "https://your-domain.com",
+    "description": "[YOUR NAME] — [e.g. Software Developer]. Drive a tiny car around a cozy town to explore my projects, skills and experience.",
+    "ogImage": "/og/og-image.png"
+  },
+  "name": "[YOUR NAME]",
+  "title": "[e.g. Software Developer]",
+  "intro": "[One-liner: I build delightful, fast web experiences.]",
+  "about": {
+    "heading": "Hi, I'm [YOUR NAME]",
+    "paragraphs": [
+      "[Short paragraph about you: what you do, what you care about, and what kind of work excites you.]",
+      "[Optional second paragraph: background, interests outside work, where you're based.]"
+    ],
+    "facts": [
+      { "label": "Based in", "value": "[City, Country]" },
+      { "label": "Currently", "value": "[Role @ Company]" },
+      { "label": "Open to", "value": "[Freelance / Full-time / Collaborations]" }
+    ]
+  },
+  "projects": [
+    {
+      "title": "[Project One]",
+      "description": "[What it is, the problem it solves, and your role. Two or three sentences work best.]",
+      "tech": ["TypeScript", "React", "Node.js"],
+      "image": "/projects/project-1.svg",
+      "live": "https://example.com",
+      "repo": "https://github.com/your-username/project-one"
+    },
+    {
+      "title": "[Project Two]",
+      "description": "[What it is, the problem it solves, and your role.]",
+      "tech": ["Three.js", "WebGL", "GLSL"],
+      "image": "/projects/project-2.svg",
+      "live": "https://example.com",
+      "repo": "https://github.com/your-username/project-two"
+    },
+    {
+      "title": "[Project Three]",
+      "description": "[What it is, the problem it solves, and your role.]",
+      "tech": ["Python", "FastAPI", "PostgreSQL"],
+      "image": "/projects/project-3.svg",
+      "live": "",
+      "repo": "https://github.com/your-username/project-three"
+    },
+    {
+      "title": "[Project Four]",
+      "description": "[What it is, the problem it solves, and your role.]",
+      "tech": ["Swift", "SwiftUI"],
+      "image": "/projects/project-4.svg",
+      "live": "https://example.com",
+      "repo": ""
+    }
+  ],
+  "skills": [
+    { "name": "TypeScript", "group": "Languages" },
+    { "name": "JavaScript", "group": "Languages" },
+    { "name": "Python", "group": "Languages" },
+    { "name": "React", "group": "Frontend" },
+    { "name": "Three.js", "group": "Frontend" },
+    { "name": "CSS", "group": "Frontend" },
+    { "name": "Node.js", "group": "Backend" },
+    { "name": "PostgreSQL", "group": "Backend" },
+    { "name": "Docker", "group": "Tools" },
+    { "name": "Git", "group": "Tools" },
+    { "name": "Figma", "group": "Tools" },
+    { "name": "AWS", "group": "Tools" }
+  ],
+  "experience": [
+    {
+      "kind": "work",
+      "role": "[Job Title]",
+      "org": "[Company]",
+      "period": "[2023 — Present]",
+      "summary": "[One or two lines about impact: what you built, shipped or improved.]"
+    },
+    {
+      "kind": "work",
+      "role": "[Previous Job Title]",
+      "org": "[Previous Company]",
+      "period": "[2021 — 2023]",
+      "summary": "[One or two lines about impact.]"
+    },
+    {
+      "kind": "education",
+      "role": "[Degree / Program]",
+      "org": "[University / School]",
+      "period": "[2017 — 2021]",
+      "summary": "[Focus, honours, or notable coursework.]"
+    }
+  ],
+  "contact": {
+    "email": "you@example.com",
+    "message": "[A short line inviting people to reach out.]",
+    "socials": [
+      { "label": "GitHub", "url": "https://github.com/your-username" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/your-username" },
+      { "label": "X", "url": "https://x.com/your-username" }
+    ],
+    "formEndpoint": ""
+  },
+  "resume": "/resume.pdf",
+  "easterEgg": {
+    "title": "You found the secret dock!",
+    "message": "Thanks for exploring every corner. As a reward, your car now has a new paint job (press C to cycle cars) and the horn plays a tune."
+  }
+}

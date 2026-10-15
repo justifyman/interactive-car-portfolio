@@ -1,0 +1,126 @@
+// Which models go into which runtime bundle, and how big they should be in the world.
+// World scale reference: the player sedan is ~2.55 units long and ~1.3 tall.
+//   s: uniform scale factor  (use for modular kits so pieces keep tiling)
+//   h: target height in world units (scale is derived from the model's bounds)
+// Every bundle is retinted to the shared palette (scripts/palette.mjs), merged,
+// de-duplicated and meshopt-compressed by scripts/build-assets.mjs.
+
+const K = (pack, file, opts = {}) => ({ src: 'kenney', pack, file, ...opts });
+const many = (pack, files, opts) => files.map((f) => K(pack, f, opts));
+
+export const BUNDLES = {
+  vehicles: [
+    ...many('car-kit', ['sedan', 'sedan-sports', 'hatchback-sports', 'van', 'taxi', 'truck', 'delivery', 'suv', 'police'], { s: 1 }),
+    ...many('car-kit', ['cone', 'cone-flat', 'box'], { s: 1 }),
+  ],
+
+  town: [
+    // Suburban houses (filler homes around the loop)
+    ...many('city-kit-suburban', ['building-type-a', 'building-type-c', 'building-type-d', 'building-type-f', 'building-type-h', 'building-type-k', 'building-type-n', 'building-type-q', 'building-type-t'], { s: 6, prefix: 'house-' }),
+    ...many('city-kit-suburban', ['fence-1x2', 'fence-1x3', 'fence-low', 'planter', 'path-stones-messy', 'path-stones-long', 'tree-large', 'tree-small'], { s: 6, prefix: 'sub-' }),
+    // Fantasy town modular pieces for the hand-built landmark buildings
+    ...many('fantasy-town-kit', [
+      'wall', 'wall-door', 'wall-window-shutters', 'wall-window-glass', 'wall-window-round', 'wall-corner', 'wall-doorway-round', 'wall-doorway-square-wide', 'wall-half', 'wall-detail-cross',
+      'wall-wood', 'wall-wood-door', 'wall-wood-window-shutters', 'wall-wood-window-glass', 'wall-wood-window-round', 'wall-wood-corner', 'wall-wood-doorway-square-wide', 'wall-wood-detail-cross', 'wall-wood-detail-diagonal',
+      'roof', 'roof-corner', 'roof-gable', 'roof-gable-end', 'roof-gable-detail', 'roof-gable-top', 'roof-point', 'roof-flat', 'roof-window', 'roof-left', 'roof-right', 'roof-corner-inner',
+      'roof-high', 'roof-high-gable', 'roof-high-gable-end', 'roof-high-point', 'roof-high-corner', 'roof-high-window', 'roof-high-flat',
+      'chimney', 'chimney-base', 'chimney-top', 'overhang', 'banner-red', 'banner-green', 'pillar-wood', 'pillar-stone', 'planks', 'poles', 'poles-horizontal',
+      'stairs-stone', 'stairs-wood', 'balcony-wall', 'balcony-wall-fence',
+      'fountain-round', 'fountain-round-detail', 'lantern', 'stall', 'stall-red', 'stall-green', 'stall-bench', 'stall-stool', 'cart', 'cart-high',
+      'fence', 'fence-gate', 'fence-curved', 'fence-broken', 'hedge', 'hedge-large', 'hedge-curved', 'hedge-gate',
+      'windmill', 'blade', 'watermill', 'wheel',
+    ], { s: 2.4, prefix: 'ft-' }),
+  ],
+
+  nature: [
+    K('platformer-kit', 'tree', { h: 5.2, name: 'tree-round' }),
+    K('platformer-kit', 'tree-pine', { h: 5.8, name: 'tree-pine-a' }),
+    K('platformer-kit', 'tree-pine-small', { h: 3.6, name: 'tree-pine-small' }),
+    K('platformer-kit', 'flowers', { h: 0.55, name: 'flowers' }),
+    K('platformer-kit', 'flowers-tall', { h: 0.9, name: 'flowers-tall' }),
+    K('platformer-kit', 'plant', { h: 0.6, name: 'plant' }),
+    K('platformer-kit', 'grass', { h: 0.5, name: 'grass-tuft' }),
+    K('platformer-kit', 'mushrooms', { h: 0.5, name: 'mushrooms' }),
+    K('platformer-kit', 'rocks', { h: 1.3, name: 'rocks' }),
+    K('platformer-kit', 'stones', { h: 0.25, name: 'stones' }),
+    K('survival-kit', 'tree', { h: 6.2, name: 'pine' }),
+    K('survival-kit', 'tree-tall', { h: 8, name: 'pine-tall' }),
+    K('survival-kit', 'tree-autumn', { h: 5.4, name: 'pine-autumn' }),
+    K('survival-kit', 'tree-autumn-tall', { h: 7, name: 'pine-autumn-tall' }),
+    K('survival-kit', 'rock-a', { h: 1.6, name: 'rock-a' }),
+    K('survival-kit', 'rock-b', { h: 1.2, name: 'rock-b' }),
+    K('survival-kit', 'rock-c', { h: 1.0, name: 'rock-c' }),
+    K('survival-kit', 'rock-flat-grass', { h: 0.5, name: 'rock-flat-grass' }),
+    K('survival-kit', 'grass-large', { h: 0.55, name: 'grass-large' }),
+    K('survival-kit', 'patch-grass', { s: 4, name: 'patch-grass' }),
+    K('survival-kit', 'tree-log', { s: 3.5, name: 'log' }),
+    K('survival-kit', 'tree-trunk', { s: 3.5, name: 'stump' }),
+    K('fantasy-town-kit', 'tree', { s: 2.4, name: 'ft-tree' }),
+    K('fantasy-town-kit', 'tree-high', { s: 2.4, name: 'ft-tree-high' }),
+    K('fantasy-town-kit', 'tree-high-round', { s: 2.4, name: 'ft-tree-high-round' }),
+    K('fantasy-town-kit', 'tree-crooked', { s: 2.4, name: 'ft-tree-crooked' }),
+    K('fantasy-town-kit', 'rock-large', { s: 2.2, name: 'ft-rock-large' }),
+    K('fantasy-town-kit', 'rock-wide', { s: 2.2, name: 'ft-rock-wide' }),
+    K('fantasy-town-kit', 'rock-small', { s: 2.2, name: 'ft-rock-small' }),
+    K('nature-kit', 'lily_large', { s: 3, name: 'lily-large' }),
+    K('nature-kit', 'lily_small', { s: 3, name: 'lily-small' }),
+    K('nature-kit', 'plant_bushDetailed', { h: 1.1, name: 'bush' }),
+    K('nature-kit', 'plant_bushLarge', { h: 1.3, name: 'bush-large' }),
+    K('nature-kit', 'stump_roundDetailed', { h: 0.6, name: 'stump-round' }),
+    K('nature-kit', 'log_stack', { h: 0.9, name: 'log-stack' }),
+    K('nature-kit', 'crop_pumpkin', { h: 0.55, name: 'pumpkin' }),
+    K('nature-kit', 'flower_yellowB', { h: 0.45, name: 'flower-yellow' }),
+    K('nature-kit', 'flower_purpleA', { h: 0.45, name: 'flower-purple' }),
+  ],
+
+  props: [
+    K('survival-kit', 'barrel', { h: 1.0, name: 'barrel' }),
+    K('survival-kit', 'box', { h: 0.8, name: 'box' }),
+    K('survival-kit', 'box-large', { h: 0.8, name: 'box-large' }),
+    K('survival-kit', 'box-open', { h: 0.8, name: 'box-open' }),
+    K('survival-kit', 'workbench', { h: 1.1, name: 'workbench' }),
+    K('survival-kit', 'workbench-anvil', { h: 1.0, name: 'anvil' }),
+    K('survival-kit', 'chest', { h: 0.8, name: 'chest' }),
+    K('survival-kit', 'campfire-pit', { h: 0.6, name: 'campfire' }),
+    K('survival-kit', 'signpost', { h: 2.4, name: 'signpost' }),
+    K('survival-kit', 'signpost-single', { h: 2.4, name: 'signpost-single' }),
+    K('survival-kit', 'bucket', { h: 0.5, name: 'bucket' }),
+    K('survival-kit', 'resource-planks', { h: 0.4, name: 'planks-pile' }),
+    K('survival-kit', 'resource-wood', { h: 0.6, name: 'wood-pile' }),
+    K('survival-kit', 'tool-shovel', { h: 1.4, name: 'shovel' }),
+    K('survival-kit', 'tool-pickaxe', { h: 1.2, name: 'pickaxe' }),
+    K('survival-kit', 'tent-canvas', { h: 2.2, name: 'tent' }),
+    K('survival-kit', 'fence', { h: 1.2, name: 'post-fence' }),
+    K('platformer-kit', 'crate', { h: 1.0, name: 'crate' }),
+    K('platformer-kit', 'crate-strong', { h: 1.0, name: 'crate-strong' }),
+    K('platformer-kit', 'barrel', { h: 0.95, name: 'barrel-b' }),
+    K('platformer-kit', 'sign', { h: 1.5, name: 'sign' }),
+    K('platformer-kit', 'fence-straight', { h: 1.0, name: 'fence-wood' }),
+    K('platformer-kit', 'fence-rope', { h: 0.9, name: 'fence-rope' }),
+    K('platformer-kit', 'flag', { h: 2.6, name: 'flag' }),
+    K('platformer-kit', 'coin-gold', { h: 0.8, name: 'coin' }),
+    K('platformer-kit', 'star', { h: 0.9, name: 'star' }),
+    K('city-kit-roads', 'construction-barrier', { h: 0.9, name: 'barrier' }),
+    K('city-kit-roads', 'construction-cone', { h: 0.7, name: 'traffic-cone' }),
+    K('city-kit-roads', 'construction-light', { h: 1.1, name: 'construction-light' }),
+    K('city-kit-roads', 'light-curved', { h: 4.2, name: 'streetlight' }),
+    K('city-kit-roads', 'road-sign-warning', { h: 2.0, name: 'road-sign-warning' }),
+    K('racing-kit', 'barrierRed', { h: 0.8, name: 'barrier-red' }),
+    K('watercraft-kit', 'boat-row-small', { h: 0.9, name: 'rowboat' }),
+    K('watercraft-kit', 'boat-fishing-small', { h: 2.6, name: 'fishing-boat' }),
+    K('watercraft-kit', 'boat-sail-a', { h: 5.5, name: 'sailboat' }),
+    K('watercraft-kit', 'buoy', { h: 1.0, name: 'buoy' }),
+    K('watercraft-kit', 'buoy-flag', { h: 1.6, name: 'buoy-flag' }),
+    K('furniture-kit', 'trashcan', { h: 1.0, name: 'trashcan' }),
+    K('furniture-kit', 'bench', { h: 0.9, name: 'bench' }),
+    K('furniture-kit', 'pottedPlant', { h: 1.0, name: 'potted-plant' }),
+    K('mini-market', 'shopping-cart', { h: 1.0, name: 'shopping-cart' }),
+    K('mini-market', 'display-fruit', { h: 1.1, name: 'fruit-stand' }),
+    { src: 'polypizza', file: 'mailbox', name: 'mailbox', h: 1.6 },
+  ],
+};
+
+export const CREDITS = {
+  kenney: { author: 'Kenney (kenney.nl)', license: 'CC0 1.0' },
+  'polypizza:mailbox': { title: 'Mailbox', author: 'Isa Lousberg', url: 'https://poly.pizza/m/FCuds5nBko', license: 'CC0 1.0' },
+};

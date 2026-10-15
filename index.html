@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#E8DCCB" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!--HEAD-->
+    <script>
+      // Decide before first paint: 3D game (WebGL2) or classic scrolling page.
+      (function () {
+        try {
+          var c = document.createElement('canvas');
+          if (c.getContext('webgl2') && !/[?&]classic\b/.test(location.search)) document.documentElement.classList.add('mode-game');
+          else document.documentElement.classList.add('mode-classic');
+        } catch (e) {
+          document.documentElement.classList.add('mode-classic');
+        }
+      })();
+    </script>
+    <style>
+      /* Critical styles so the page never flashes unstyled before JS loads. */
+      html, body { margin: 0; background: linear-gradient(180deg, #e8dccb 0%, #b9c7cf 100%) fixed; color: #3b3542; }
+      .mode-game .classic { display: none; }
+    </style>
+  </head>
+  <body>
+    <noscript><style>.classic{display:block!important}</style></noscript>
+    <!--CLASSIC-->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
